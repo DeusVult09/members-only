@@ -1,0 +1,13 @@
+
+<% @posts.each do |post| %>
+  <p>
+    <h2>Title:</h2> <%= post.title %><br>
+    <p><%= post.body %></p><br>
+    <% if user_signed_in? %>
+      <strong>Author:</strong> <%= post.user.email %>
+    <% else %>
+      <em>Unknown author</em>
+    <% end %>
+  </p>
+  <hr>
+<% end %>
