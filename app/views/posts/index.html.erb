@@ -1,23 +1,24 @@
 
 <% @posts.each do |post| %>
-  <p>
+  <div class="post">
     <h2>Title:</h2> <%= post.title %><br>
     <p><%= post.body %></p><br>
 
     <% if user_signed_in? %>
-      <strong>Author:</strong> <%= post.user.email %>
+      <p><strong>Author:</strong> <%= post.user.email %></p>
     <% else %>
       <em>Unknown author</em>
     <% end %>
-  </p>
+  </div>
   <hr>
 
-  <% if user_signed_in? %>
-    <%= link_to "New Post", new_post_path %> |
-    <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
-  <% else %>
-    <%= link_to "Sign Up", new_user_registration_path %> |
-    <%= link_to "Log In", new_user_session_path %>
-  <% end %> 
-
+  <div class="auth-links">
+    <% if user_signed_in? %>
+      <%= button_to "New Post", new_post_path %> |
+      <%= button_to "Log Out", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "Sign Up", new_user_registration_path %> |
+      <%= link_to "Log In", new_user_session_path %>
+    <% end %>
+  </div> 
 <% end %>
